@@ -8,6 +8,7 @@ import {
   ViewStyle,
   TextStyle,
 } from "react-native";
+import { styles } from "./style";
 
 interface ButtonProps extends TouchableOpacityProps {
   value: string;
@@ -28,7 +29,7 @@ export const Button = ({
     <TouchableOpacity
       style={[styles.defaultButton, disabled && styles.disabled, buttonStyle]}
       activeOpacity={0.8}
-      disabled={disabled}
+      
       {...rest}
     >
       {isLoading ? (
@@ -39,29 +40,3 @@ export const Button = ({
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  defaultButton: {
-    backgroundColor: "#0D47A1",
-    paddingVertical: 14,
-    borderRadius: 10,
-    alignItems: "center",
-    justifyContent: "center",
-    width: "100%",
-  },
-  defaultText: {
-    color: "#FFF",
-    fontWeight: "600",
-    fontSize: 16,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  disabled: {
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 14,
-    borderRadius: 10,
-    width: "100%",
-  },
-});

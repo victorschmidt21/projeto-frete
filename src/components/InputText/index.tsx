@@ -1,4 +1,5 @@
-import React from "react";
+import React, { forwardRef } from "react";
+import { Controller, FieldValues, UseControllerProps } from "react-hook-form";
 import {
   Text,
   TextInput,
@@ -7,26 +8,42 @@ import {
   StyleSheet,
 } from "react-native";
 
-interface FormInputProps extends TextInputProps {
+interface FormInputProps<T extends FieldValues> {
   label: string;
-  errorMessage?: string;
+  formProps: UseControllerProps<T>;
+  inputProps: TextInputProps;
 }
 
-export const InputText = ({ label, errorMessage, ...rest }: FormInputProps) => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.label}>{label}</Text>
+export const InputText = forwardRef<TextInput, FormInputProps<any>>(
+  ({ label, formProps, inputProps }, ref) => {
+    return (
+      <Controller
+        render={({ field, fieldState }) => (
+          <View style={styles.container}>
+            <Text style={styles.label}>{label}</Text>
 
-      <TextInput
-        style={[styles.input, errorMessage ? styles.inputError : null]}
-        placeholderTextColor="#999"
-        {...rest}
+            <TextInput
+              style={[
+                styles.input,
+                fieldState.error?.message ? styles.inputError : null,
+              ]}
+              placeholderTextColor="#999"
+              {...inputProps}
+              ref={ref}
+              value={field.value}
+              onChangeText={field.onChange}
+            />
+
+            {fieldState.error?.message && (
+              <Text style={styles.error}>{fieldState.error?.message}</Text>
+            )}
+          </View>
+        )}
+        {...formProps}
       />
-
-      {!!errorMessage && <Text style={styles.error}>{errorMessage}</Text>}
-    </View>
-  );
-};
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   container: {
