@@ -1,6 +1,6 @@
 import { Alert, Pressable, Text, TextInput, View } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { LoginSchema, loginSchema } from "@/schemas/LoginSchema";
 import { InputText } from "@/components/InputText";
@@ -16,9 +16,11 @@ export default function Login() {
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
   const { updateUser } = useUserStore();
+
   const { control, handleSubmit } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
   });
+
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
 

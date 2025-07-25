@@ -47,4 +47,27 @@ export const style = StyleSheet.create({
     borderWidth: 2,
     borderColor: theme.colors.primary,
   },
+  header: {
+    paddingTop: theme.space.space24,
+    paddingHorizontal: theme.space.space24,
+    backgroundColor: theme.colors.white,
+  },
+  headerTitle: {
+    fontSize: theme.fontSize.fontSize24,
+    fontWeight: "700",
+    color: theme.colors.black,
+    marginBottom: theme.space.space8,
+    textAlign: "center",
+  },
+  headerSubtitle: {
+    fontSize: theme.fontSize.fontSize16,
+    color: theme.colors.darkGray,
+    marginBottom: theme.space.space16,
+    textAlign: "center",
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: theme.space.space24,
+    backgroundColor: theme.colors.white,
+  },
 });
