@@ -4,6 +4,7 @@ import { TextInput, View, Text } from "react-native";
 import { useRef } from "react";
 import { InputText } from "@/components/InputText";
 import { styles } from "./style";
+import { InputDate } from "@/components/inputdate";
 
 interface Props {
   control: Control<CredentialsDriverSchema>;
@@ -16,6 +17,7 @@ export function FormCredentialsDriver({ control }: Props) {
   return (
     <View>
       <Text style={styles.title}>Digite seu e-mail e senha</Text>
+      
       <InputText
         label="E-mail"
         ref={emailRef}

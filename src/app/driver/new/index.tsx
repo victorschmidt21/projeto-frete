@@ -47,14 +47,16 @@ export default function NewDriver() {
   async function onSubmitCredentials(data: CredentialsDriverSchema) {
     setIsLoading(true);
     try {
-      const newUser = await registerUser(data.email, data.password);
-      await updateUser(newUser.uid, newUser.email || "");
+      // const newUser = await registerUser(data.email, data.password);
+
+      // await updateUser(newUser.uid, newUser.email || "");
       setTimeout(() => {
         setIsLoading(false);
         setStep(2);
       }, 3000);
     } catch (err) {
       toastError({ title: "Erro", description: `${err}` });
+      setIsLoading(false);
     }
   }
 

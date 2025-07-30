@@ -27,10 +27,13 @@ export const InputText = forwardRef<TextInput, FormInputProps<any>>(
                 styles.input,
                 fieldState.error?.message ? styles.inputError : null,
               ]}
+              autoComplete="off"
+              textContentType="none"
               placeholderTextColor="#999"
               {...inputProps}
               ref={ref}
               value={field.value}
+              importantForAutofill="no"
               onChangeText={field.onChange}
             />
 

@@ -15,14 +15,14 @@ import { useUserStore } from "@/store/userStore";
 export default function Login() {
   const emailRef = useRef<TextInput>(null);
   const passwordRef = useRef<TextInput>(null);
+  const router = useRouter();
   const { updateUser } = useUserStore();
+  const [open, setOpen] = useState<boolean>(false);
 
   const { control, handleSubmit } = useForm<LoginSchema>({
     resolver: zodResolver(loginSchema),
   });
 
-  const router = useRouter();
-  const [open, setOpen] = useState<boolean>(false);
 
   async function onSubmit(loginValues: LoginSchema) {
     try {

@@ -3,14 +3,23 @@ import { DriverSchema } from "../../schemas/DriverSchema";
 import { InputText } from "@/components/InputText";
 import { Text, View } from "react-native";
 import { styles } from "./style";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import { useState } from "react";
+import { InputDate } from "@/components/inputdate";
+
 interface Props {
   control: Control<DriverSchema>;
 }
 
 export function FormDriver({ control }: Props) {
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
+
   return (
     <View>
-      <Text style={styles.title}>Agora vamos finalizar o cadastro de seus dados!</Text>
+      <Text style={styles.title}>
+        Agora vamos finalizar o cadastro de seus dados!
+      </Text>
       <InputText
         label="Nome completo"
         inputProps={{
@@ -33,16 +42,12 @@ export function FormDriver({ control }: Props) {
           control: control,
         }}
       />
-      <InputText
-        label="Data de nascimento"
-        inputProps={{
-          placeholder: "AAAA-MM-DD",
-        }}
-        formProps={{
-          name: "birthDate",
-          control: control,
-        }}
+
+      <InputDate
+        label="Dat de nascimento"
+        formProps={{ control: control, name: "birthDate" }}
       />
+
       <InputText
         label="RNTRC"
         inputProps={{
